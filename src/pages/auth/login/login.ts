@@ -33,6 +33,6 @@ form.addEventListener("submit", (e: SubmitEvent) => {
   if (sessionUser.role === "admin") {
     navigate("/src/pages/admin/home/home.html");
   } else {
-    navigate("/src/pages/client/home/home.html");
+    navigate("/src/pages/store/home/home.html");
   }
 });
