@@ -3,7 +3,7 @@ import "./home.css";
 
 import { checkAuhtUser, logout } from "../../../utils/auth";
 import { getCategories, PRODUCTS } from "../../../data/data";
-import type { Product } from "../../../types/Product";
+import type { Product } from "../../../types/product";
 import { addToCart } from "../../../utils/cart";
 
 // Logout button
@@ -28,13 +28,12 @@ const renderProducts = (products: Product[]) => {
     div.className = "product-card";
 
     div.innerHTML = `
-      <h3 class="product-card__title">${product.name}</h3>
-      <p class="product-card__price">$${product.price}</p>
+      <h3 class="product-card__title">${product.nombre}</h3>
+      <p class="product-card__price">$${product.precio}</p>
       <button class="product-card__button">Agregar</button>
     `;
 
     const button = div.querySelector("button") as HTMLButtonElement;
-    console.log(button);
 
     button.addEventListener("click", () => {
       addToCart(product);
@@ -52,7 +51,7 @@ searchInput.addEventListener("input", () => {
   const value = searchInput.value.toLowerCase();
 
   const filtered = PRODUCTS.filter((product) =>
-    product.name.toLowerCase().includes(value),
+    product.nombre.toLowerCase().includes(value),
   );
 
   renderProducts(filtered);
@@ -68,17 +67,27 @@ const renderCategories = () => {
 
   categoriesContainer.innerHTML = "";
 
+  // Todas
   const allBtn = document.createElement("button");
   allBtn.textContent = "Todas";
-  allBtn.addEventListener("click", () => renderProducts(PRODUCTS));
+
+  allBtn.addEventListener("click", () => {
+    renderProducts(PRODUCTS);
+  });
+
   categoriesContainer.appendChild(allBtn);
 
+  // Dynamic categories
   categories.forEach((category) => {
     const btn = document.createElement("button");
-    btn.textContent = category;
+
+    btn.textContent = category.nombre;
 
     btn.addEventListener("click", () => {
-      const filtered = PRODUCTS.filter((p) => p.category === category);
+      const filtered = PRODUCTS.filter((product) =>
+        product.categorias.some((c) => c.id === category.id),
+      );
+
       renderProducts(filtered);
     });
 
@@ -88,8 +97,6 @@ const renderCategories = () => {
 
 // Init function
 const initPage = () => {
-  console.log("inicio de pagina");
-
   checkAuhtUser(
     "/src/pages/auth/login/login.html",
     "/src/pages/admin/home/home.html",

@@ -1,4 +1,4 @@
-import { CartItem, Product } from "../types/Product";
+import { CartItem, Product } from "../types/product";
 import { getItem, setItem } from "./localStorage";
 
 const CART_KEY = "cart";

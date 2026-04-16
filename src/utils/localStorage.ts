@@ -1,27 +1,33 @@
 import type { IUser } from "../types/IUser";
 
-// Users management
-export const saveUser = (user: IUser) => {
-  const parseUser = JSON.stringify(user);
-  localStorage.setItem("users", parseUser);
-};
-export const getUSer = () => {
-  return localStorage.getItem("users");
-};
-export const removeUser = () => {
-  localStorage.removeItem("users");
-};
-
-// Product management
-export const setItem = <T>(key: string, value: T): void => {
+// GENERIC
+export const setItem = <T>(key: string, value: T) => {
   localStorage.setItem(key, JSON.stringify(value));
 };
 
 export const getItem = <T>(key: string): T | null => {
   const data = localStorage.getItem(key);
-  return data ? (JSON.parse(data) as T) : null;
+  return data ? JSON.parse(data) : null;
 };
 
-export const removeItem = (key: string): void => {
-  localStorage.removeItem(key);
+// USERS (array)
+export const getUsers = (): IUser[] => {
+  return getItem<IUser[]>("users") || [];
+};
+
+export const setUsers = (users: IUser[]) => {
+  setItem("users", users);
+};
+
+// SESSION (single user)
+export const saveSession = (user: IUser) => {
+  setItem("userData", user);
+};
+
+export const getSession = (): IUser | null => {
+  return getItem<IUser>("userData");
+};
+
+export const removeSession = () => {
+  localStorage.removeItem("userData");
 };

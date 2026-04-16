@@ -7,7 +7,7 @@ import {
   removeFromCart,
   updateQuantity,
 } from "../../../utils/cart";
-import type { CartItem } from "../../../types/Product";
+import type { CartItem } from "../../../types/product";
 
 const cartContainer = document.getElementById(
   "cartContainer",
