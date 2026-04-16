@@ -32,8 +32,8 @@ const renderCart = () => {
 
     div.innerHTML = `
       <div class="cart-item__info">
-        <h3 class="cart-item__title">${item.product.name}</h3>
-        <p class="cart-item__price">$${item.product.price}</p>
+        <h3 class="cart-item__title">${item.product.nombre}</h3>
+        <p class="cart-item__price">$${item.product.precio}</p>
       </div>
 
       <div class="cart-item__controls">

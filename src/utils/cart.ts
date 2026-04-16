@@ -1,4 +1,4 @@
-import { CartItem, Product } from "../types/product";
+import type { CartItem, Product } from "../types/product";
 import { getItem, setItem } from "./localStorage";
 
 const CART_KEY = "cart";
@@ -21,29 +21,23 @@ export const addToCart = (product: Product): void => {
   setItem(CART_KEY, cart);
 };
 
-export const getTotal = (): number => {
-  const cart = getCart();
+export const removeFromCart = (productId: number): void => {
+  const updated = getCart().filter((item) => item.product.id !== productId);
 
-  return cart.reduce((total, item) => {
-    return total + item.product.price * item.quantity;
-  }, 0);
+  setItem(CART_KEY, updated);
 };
 
-export const removeFromCart = (productId: string): void => {
-  const cart = getCart().filter((item) => item.product.id !== productId);
-  setItem(CART_KEY, cart);
-};
-
-export const updateQuantity = (productId: string, quantity: number): void => {
+export const updateQuantity = (productId: number, quantity: number): void => {
   const cart = getCart();
 
   const item = cart.find((i) => i.product.id === productId);
   if (!item) return;
 
   if (quantity <= 0) {
-    // remove if 0
-    const updated = cart.filter((i) => i.product.id !== productId);
-    setItem(CART_KEY, updated);
+    setItem(
+      CART_KEY,
+      cart.filter((i) => i.product.id !== productId),
+    );
     return;
   }
 
@@ -51,10 +45,13 @@ export const updateQuantity = (productId: string, quantity: number): void => {
   setItem(CART_KEY, cart);
 };
 
-export const getCartCount = (): number => {
-  const cart = getCart();
+export const getTotal = (): number => {
+  return getCart().reduce(
+    (total, item) => total + item.product.precio * item.quantity,
+    0,
+  );
+};
 
-  return cart.reduce((total, item) => {
-    return total + item.quantity;
-  }, 0);
+export const getCartCount = (): number => {
+  return getCart().reduce((t, i) => t + i.quantity, 0);
 };
