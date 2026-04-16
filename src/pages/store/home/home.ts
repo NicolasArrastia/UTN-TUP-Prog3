@@ -1,5 +1,6 @@
 import "../../../global.css";
 import "./home.css";
+import { getCartCount } from "../../../utils/cart";
 
 import { checkAuhtUser, logout } from "../../../utils/auth";
 import { getCategories, PRODUCTS } from "../../../data/data";
@@ -108,7 +109,6 @@ const initPage = () => {
   renderCartCount();
 };
 
-import { getCartCount } from "../../../utils/cart";
 // Update cart count
 const cartCountElement = document.getElementById(
   "cartCount",
