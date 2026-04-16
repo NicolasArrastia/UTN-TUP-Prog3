@@ -1,30 +1,75 @@
-import { CartItem, Product } from "../../../types/Product";
-import { getItem, setItem } from "../../../utils/localStorage";
+import "../../../global.css";
+import "./cart.css";
 
-const CART_KEY = "cart";
+import {
+  getCart,
+  getTotal,
+  removeFromCart,
+  updateQuantity,
+} from "../../../utils/cart";
+import type { CartItem } from "../../../types/Product";
 
-export const getCart = (): CartItem[] => {
-  return getItem<CartItem[]>(CART_KEY) || [];
-};
+const cartContainer = document.getElementById(
+  "cartContainer",
+) as HTMLDivElement;
+const totalElement = document.getElementById("total") as HTMLHeadingElement;
 
-export const addToCart = (product: Product): void => {
-  const cart = getCart();
+const renderCart = () => {
+  const cart: CartItem[] = getCart();
 
-  const existing = cart.find((item) => item.product.id === product.id);
+  cartContainer.innerHTML = "";
 
-  if (existing) {
-    existing.quantity += 1;
-  } else {
-    cart.push({ product, quantity: 1 });
+  if (cart.length === 0) {
+    cartContainer.innerHTML = "<p>El carrito está vacío</p>";
+    totalElement.textContent = "";
+    return;
   }
 
-  setItem(CART_KEY, cart);
+  cart.forEach((item) => {
+    const div = document.createElement("div");
+
+    div.className = "cart-item";
+
+    div.innerHTML = `
+      <div class="cart-item__info">
+        <h3 class="cart-item__title">${item.product.name}</h3>
+        <p class="cart-item__price">$${item.product.price}</p>
+      </div>
+
+      <div class="cart-item__controls">
+        <button class="cart-item__btn decrease">-</button>
+        <span class="cart-item__quantity">${item.quantity}</span>
+        <button class="cart-item__btn increase">+</button>
+      </div>
+
+      <button class="cart-item__delete">Eliminar</button>
+    `;
+
+    const decreaseBtn = div.querySelector(".decrease") as HTMLButtonElement;
+    const increaseBtn = div.querySelector(".increase") as HTMLButtonElement;
+    const deleteBtn = div.querySelector(
+      ".cart-item__delete",
+    ) as HTMLButtonElement;
+
+    decreaseBtn.addEventListener("click", () => {
+      updateQuantity(item.product.id, item.quantity - 1);
+      renderCart();
+    });
+
+    increaseBtn.addEventListener("click", () => {
+      updateQuantity(item.product.id, item.quantity + 1);
+      renderCart();
+    });
+
+    deleteBtn.addEventListener("click", () => {
+      removeFromCart(item.product.id);
+      renderCart();
+    });
+
+    cartContainer.appendChild(div);
+  });
+
+  totalElement.textContent = `Total: $${getTotal()}`;
 };
 
-export const getTotal = (): number => {
-  const cart = getCart();
-
-  return cart.reduce((total, item) => {
-    return total + item.product.price * item.quantity;
-  }, 0);
-};
+renderCart();

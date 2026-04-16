@@ -1,7 +1,10 @@
+import "../../../global.css";
+import "./home.css";
+
 import { checkAuhtUser, logout } from "../../../utils/auth";
 import { getCategories, PRODUCTS } from "../../../data/data";
 import type { Product } from "../../../types/Product";
-import { addToCart } from "../cart/cart";
+import { addToCart } from "../../../utils/cart";
 
 // Logout button
 const buttonLogout = document.getElementById(
@@ -22,11 +25,12 @@ const renderProducts = (products: Product[]) => {
 
   products.forEach((product) => {
     const div = document.createElement("div");
+    div.className = "product-card";
 
     div.innerHTML = `
-      <h3>${product.name}</h3>
-      <p>$${product.price}</p>
-      <button>Agregar</button>
+      <h3 class="product-card__title">${product.name}</h3>
+      <p class="product-card__price">$${product.price}</p>
+      <button class="product-card__button">Agregar</button>
     `;
 
     const button = div.querySelector("button") as HTMLButtonElement;
@@ -34,7 +38,7 @@ const renderProducts = (products: Product[]) => {
 
     button.addEventListener("click", () => {
       addToCart(product);
-      alert("Producto agregado");
+      renderCartCount();
     });
 
     productsContainer.appendChild(div);
@@ -82,7 +86,7 @@ const renderCategories = () => {
   });
 };
 
-// Init functiod
+// Init function
 const initPage = () => {
   console.log("inicio de pagina");
 
@@ -94,6 +98,27 @@ const initPage = () => {
 
   renderProducts(PRODUCTS);
   renderCategories();
+  renderCartCount();
 };
+
+import { getCartCount } from "../../../utils/cart";
+// Update cart count
+const cartCountElement = document.getElementById(
+  "cartCount",
+) as HTMLSpanElement;
+
+const renderCartCount = () => {
+  cartCountElement.textContent = String(getCartCount());
+
+  cartCountElement.classList.add("header__cart-count--animate");
+
+  setTimeout(() => {
+    cartCountElement.classList.remove("header__cart-count--animate");
+  }, 200);
+};
+
+const count = getCartCount();
+cartCountElement.textContent = String(count);
+cartCountElement.style.display = count === 0 ? "none" : "inline-block";
 
 initPage();

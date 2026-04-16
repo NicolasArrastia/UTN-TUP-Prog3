@@ -1,3 +1,5 @@
+import "../../../global.css";
+import "../auth.css";
 import type { IUser } from "../../../types/IUser";
 
 const form = document.getElementById("form") as HTMLFormElement;

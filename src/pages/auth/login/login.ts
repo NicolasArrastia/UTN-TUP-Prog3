@@ -1,3 +1,5 @@
+import "../../../global.css";
+import "../auth.css";
 import type { IUser } from "../../../types/IUser";
 import { navigate } from "../../../utils/navigate";
 import { saveUser } from "../../../utils/localStorage";

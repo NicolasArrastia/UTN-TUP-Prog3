@@ -4,18 +4,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Inicio | Food Store</title>
 </head>
 
 <body>
-    <h1>Hola desde el cliente</h1>
-    <button id="logoutButton">Logout</button>
+    <header class="header">
+        <h1 class="header__title">Food Store</h1>
 
-    <input type="text" id="searchInput" placeholder="Buscar productos..." />
+        <div class="header__actions">
+            <input type="text" id="searchInput" class="header__search" placeholder="Buscar productos..." />
 
-    <div id="categories"></div>
+            <a href="/src/pages/store/cart/cart.html" class="header__cart">
+            🛒
+            <span id="cartCount" class="header__cart-count">0</span>
+            </a>
 
-    <div id="products"></div>
+            <button id="logoutButton" class="header__logout">Logout</button>
+        </div>
+    </header>
+
+    <main class="store">
+        <aside id="categories" class="store__categories"></aside>
+        <section id="products" class="store__products"></section>
+    </main>
 
     <script type="module" src="./home.ts"></script>
 </body>
