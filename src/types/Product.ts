@@ -1,4 +1,4 @@
-import { ICategory } from "./categoria";
+import type { ICategory } from "./categoria";
 
 export interface Product {
   id: number;

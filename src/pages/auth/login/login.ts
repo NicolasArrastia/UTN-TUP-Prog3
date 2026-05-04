@@ -2,12 +2,7 @@ import "../../../global.css";
 import "../auth.css";
 import type { IUser } from "../../../types/IUser";
 import { navigate } from "../../../utils/navigate";
-import {
-  getItem,
-  getUsers,
-  saveSession,
-  setUsers,
-} from "../../../utils/localStorage";
+import { getUsers, saveSession, setUsers } from "../../../utils/localStorage";
 
 const form = document.getElementById("form") as HTMLFormElement;
 const inputEmail = document.getElementById("email") as HTMLInputElement;
