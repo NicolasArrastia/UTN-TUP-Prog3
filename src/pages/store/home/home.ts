@@ -126,6 +126,5 @@ const renderCartCount = () => {
 
 const count = getCartCount();
 cartCountElement.textContent = String(count);
-cartCountElement.style.display = count === 0 ? "none" : "inline-block";
 
 initPage();
