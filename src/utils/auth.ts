@@ -1,26 +1,48 @@
-import type { IUser } from "../types/IUser";
-import type { Rol } from "../types/Rol";
-import { navigate } from "./navigate";
-import { getSession, removeSession } from "./localStorage";
+import { SessionUser } from "../types/sessionUser";
+import { navigate, ROUTES } from "./navigate";
+import { removeItem, getItem, setItem } from "./storage";
 
-export const checkAuhtUser = (
-  redirectIfNotLogged: string,
-  redirectIfWrongRole: string,
-  role: Rol,
-) => {
-  const user: IUser | null = getSession();
+const USER_STORAGE_KEY = "user";
+
+export function saveSession(user: SessionUser): void {
+  setItem(USER_STORAGE_KEY, user);
+}
+
+export function getSessionUser(): SessionUser | null {
+  return getItem<SessionUser>(USER_STORAGE_KEY);
+}
+
+export function isAuthenticated(): boolean {
+  return getSessionUser() !== null;
+}
+
+export function logout(): void {
+  removeItem(USER_STORAGE_KEY);
+  navigate(ROUTES.LOGIN);
+}
+
+export function isAdmin(): boolean {
+  return getSessionUser()?.rol === "ADMIN";
+}
+
+export function validateSession(): SessionUser {
+  const user = getSessionUser();
 
   if (!user) {
-    navigate(redirectIfNotLogged);
-    return;
+    navigate(ROUTES.LOGIN);
+    throw new Error("User is not authenticated");
   }
 
-  if (user.role !== role) {
-    navigate(redirectIfWrongRole);
-  }
-};
+  return user;
+}
 
-export const logout = () => {
-  removeSession();
-  navigate("/src/pages/auth/login/login.html");
-};
+export function validateAdminSession(): SessionUser {
+  const user = validateSession();
+
+  if (user.rol !== "ADMIN") {
+    window.location.href = "/src/pages/store/home/home.html";
+    throw new Error("User is not an administrator");
+  }
+
+  return user;
+}

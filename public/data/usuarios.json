@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "nombre": "Admin",
+    "apellido": "Sistema",
+    "mail": "admin@food.com",
+    "celular": "1111111111",
+    "password": "admin123",
+    "rol": "ADMIN"
+  },
+  {
+    "id": 2,
+    "nombre": "Juan",
+    "apellido": "Perez",
+    "mail": "cliente@food.com",
+    "celular": "2222222222",
+    "password": "cliente123",
+    "rol": "USUARIO"
+  },
+  {
+    "id": 3,
+    "nombre": "Maria",
+    "apellido": "Gomez",
+    "mail": "maria@mail.com",
+    "celular": "3333333333",
+    "password": "123456",
+    "rol": "USUARIO"
+  },
+  {
+    "id": 4,
+    "nombre": "Luis",
+    "apellido": "Diaz",
+    "mail": "luis@mail.com",
+    "celular": "4444444444",
+    "password": "123456",
+    "rol": "USUARIO"
+  }
+]

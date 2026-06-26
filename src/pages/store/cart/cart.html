@@ -1,24 +1,83 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carrito | Food Store</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Carrito</title>
-</head>
+  <body class="min-h-screen bg-gray-100">
+    <!-- Header -->
+    <header class="bg-white shadow-sm">
+      <div
+        class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4"
+      >
+        <h1 class="text-2xl font-bold text-orange-600">
+          Carrito
+        </h1>
 
-<body>
-  <header class="header">
-    <h1 class="header__title">Carrito</h1>
-    <a href="/src/pages/store/home/home.html" class="header__cart">Volver</a>
-  </header>
+        <a
+          href="/src/pages/store/home/home.html"
+          class="rounded-lg px-4 py-2 text-sm font-medium text-gray-600 transition hover:bg-gray-100"
+        >
+          ← Volver al catálogo
+        </a>
+      </div>
+    </header>
 
-  <main class="cart">
-    <div id="cartContainer" class="cart__items"></div>
-    <h2 id="total" class="cart__total"></h2>
-  </main>
+    <!-- Content -->
+    <main class="mx-auto flex max-w-7xl flex-col gap-6 p-6 lg:flex-row">
+      
+      <!-- Items -->
+      <section
+        id="cartContainer"
+        class="flex-1 space-y-4"
+      ></section>
 
-  <script type="module" src="./cart.ts"></script>
-</body>
+      <!-- Summary -->
+      <aside
+        class="w-full rounded-lg bg-white p-5 shadow lg:w-80"
+      >
+        <h2 class="mb-4 text-lg font-semibold">
+          Resumen del pedido
+        </h2>
 
+        <div class="space-y-3 text-sm">
+          <div class="flex justify-between">
+            <span>Subtotal</span>
+            <span id="subtotal">$0</span>
+          </div>
+
+          <div class="flex justify-between">
+            <span>Envío</span>
+            <span id="shipping">$0</span>
+          </div>
+
+          <div class="border-t pt-3">
+            <div class="flex justify-between font-bold">
+              <span>Total</span>
+              <span id="total">$0</span>
+            </div>
+          </div>
+        </div>
+
+        <button
+          id="clearCart"
+          class="mt-6 w-full rounded-lg bg-red-500 px-4 py-2 font-medium text-white transition hover:bg-red-600"
+        >
+          Vaciar carrito
+        </button>
+
+        <button
+          id="checkoutButton"
+          class="mt-3 w-full rounded-lg bg-orange-600 px-4 py-2 font-medium text-white transition hover:bg-orange-700"
+        >
+          Confirmar compra
+        </button>
+      </aside>
+    </main>
+
+    <script type="module" src="./cart.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>

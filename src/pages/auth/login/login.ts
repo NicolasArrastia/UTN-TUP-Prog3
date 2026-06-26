@@ -1,46 +1,75 @@
-import "../../../global.css";
-import "../auth.css";
-import type { IUser } from "../../../types/IUser";
-import { navigate } from "../../../utils/navigate";
-import { getUsers, saveSession, setUsers } from "../../../utils/localStorage";
+import { getUsers } from "../../../utils/api";
+import { saveSession } from "../../../utils/auth";
+import { navigate, ROUTES } from "../../../utils/navigate";
 
-const form = document.getElementById("form") as HTMLFormElement;
-const inputEmail = document.getElementById("email") as HTMLInputElement;
-const inputPassword = document.getElementById("password") as HTMLInputElement;
+const form = document.querySelector<HTMLFormElement>("#login-form");
+const emailInput = document.querySelector<HTMLInputElement>("#email");
+const passwordInput = document.querySelector<HTMLInputElement>("#password");
 
-form.addEventListener("submit", (e: SubmitEvent) => {
-  e.preventDefault();
+const errorMessage =
+  document.querySelector<HTMLParagraphElement>("#error-message");
 
-  const email = inputEmail.value.trim();
-  const password = inputPassword.value.trim();
+if (!form || !emailInput || !passwordInput || !errorMessage) {
+  throw new Error("Login elements not found");
+}
 
-  const users = getUsers();
+async function login(
+  email: string,
+  password: string,
+  errorMessage: HTMLParagraphElement,
+): Promise<void> {
+  errorMessage.classList.add("hidden");
 
-  const userFound = users.find(
-    (u) => u.email === email && u.password === password,
-  );
-
-  if (!userFound) {
-    alert("Credenciales incorrectas");
+  if (!email || !password) {
+    errorMessage.textContent = "Todos los campos son obligatorios";
+    errorMessage.classList.remove("hidden");
     return;
   }
 
-  const sessionUser: IUser = {
-    ...userFound,
-    loggedIn: true,
-  };
+  try {
+    const users = await getUsers();
 
-  // update users array
-  const updatedUsers = users.map((u) =>
-    u.email === sessionUser.email ? sessionUser : u,
-  );
+    const user = users.find((u) => u.mail === email && u.password === password);
 
-  setUsers(updatedUsers);
-  saveSession(sessionUser);
+    if (!user) {
+      errorMessage.textContent = "Credenciales incorrectas";
+      errorMessage.classList.remove("hidden");
+      return;
+    }
 
-  if (sessionUser.role === "admin") {
-    navigate("/src/pages/admin/home/home.html");
-  } else {
-    navigate("/src/pages/store/home/home.html");
+    const { password: _, ...sessionUser } = user;
+
+    saveSession(sessionUser);
+
+    navigate(sessionUser.rol === "ADMIN" ? ROUTES.ADMIN_HOME : ROUTES.HOME);
+  } catch {
+    errorMessage.textContent = "Ocurrió un error al iniciar sesión";
+    errorMessage.classList.remove("hidden");
   }
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  await login(
+    emailInput.value.trim(),
+    passwordInput.value.trim(),
+    errorMessage,
+  );
+});
+
+// UTILIDADES PARA DEMO
+const adminDemo = document.querySelector<HTMLSpanElement>("#admin-demo");
+const customerDemo = document.querySelector<HTMLSpanElement>("#customer-demo");
+
+if (!adminDemo || !customerDemo) {
+  throw new Error("Demo login elements not found");
+}
+
+adminDemo.addEventListener("click", async () => {
+  await login("admin@food.com", "admin123", errorMessage);
+});
+
+customerDemo.addEventListener("click", async () => {
+  await login("cliente@food.com", "cliente123", errorMessage);
 });

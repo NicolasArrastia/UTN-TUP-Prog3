@@ -1,6 +1,6 @@
 import "../../../global.css";
 import "../auth.css";
-import type { IUser } from "../../../types/IUser";
+import type { IUser } from "../../../types/user";
 
 const form = document.getElementById("form") as HTMLFormElement;
 const inputEmail = document.getElementById("email") as HTMLInputElement;

@@ -1,0 +1,222 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesa Clásica",
+    "precio": 2500,
+    "descripcion": "",
+    "stock": 20,
+    "imagen": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 2,
+    "nombre": "Hamburguesa Doble",
+    "precio": 3200,
+    "descripcion": "",
+    "stock": 15,
+    "imagen": "https://images.unsplash.com/photo-1550547660-d9450f859349",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 3,
+    "nombre": "Cheeseburger",
+    "precio": 2800,
+    "descripcion": "",
+    "stock": 18,
+    "imagen": "https://images.unsplash.com/photo-1551782450-a2132b4ba21d",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 4,
+    "nombre": "Hamburguesa BBQ",
+    "precio": 3400,
+    "descripcion": "",
+    "stock": 10,
+    "imagen": "https://images.unsplash.com/photo-1553979459-d2229ba7433b",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 5,
+    "nombre": "Pizza Muzzarella",
+    "precio": 4000,
+    "descripcion": "",
+    "stock": 12,
+    "imagen": "https://images.unsplash.com/photo-1604382354936-07c5d9983bd3",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 6,
+    "nombre": "Pizza Pepperoni",
+    "precio": 4500,
+    "descripcion": "",
+    "stock": 10,
+    "imagen": "https://images.unsplash.com/photo-1541745537411-b8046dc6d66c",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 7,
+    "nombre": "Pizza Napolitana",
+    "precio": 4300,
+    "descripcion": "",
+    "stock": 14,
+    "imagen": "https://images.unsplash.com/photo-1565299624946-b28f40a0ae38",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 8,
+    "nombre": "Pizza Especial",
+    "precio": 5000,
+    "descripcion": "",
+    "stock": 8,
+    "imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  },
+  {
+    "id": 9,
+    "nombre": "Coca Cola",
+    "precio": 1200,
+    "descripcion": "",
+    "stock": 50,
+    "imagen": "https://images.unsplash.com/photo-1600271886742-f049cd451bba",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 10,
+    "nombre": "Agua Mineral",
+    "precio": 900,
+    "descripcion": "",
+    "stock": 60,
+    "imagen": "https://images.unsplash.com/photo-1523362628745-0c100150b504",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 11,
+    "nombre": "Jugo Naranja",
+    "precio": 1100,
+    "descripcion": "",
+    "stock": 30,
+    "imagen": "https://images.unsplash.com/photo-1613478223719-2ab802602423",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 3
+  },
+  {
+    "id": 12,
+    "nombre": "Helado Chocolate",
+    "precio": 1500,
+    "descripcion": "",
+    "stock": 25,
+    "imagen": "https://images.unsplash.com/photo-1501443762994-82bd5dace89a",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 13,
+    "nombre": "Helado Vainilla",
+    "precio": 1500,
+    "descripcion": "",
+    "stock": 25,
+    "imagen": "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 14,
+    "nombre": "Torta Oreo",
+    "precio": 3000,
+    "descripcion": "",
+    "stock": 10,
+    "imagen": "https://images.unsplash.com/photo-1606313564200-e75d5e30476c",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 4
+  },
+  {
+    "id": 15,
+    "nombre": "Papas Fritas",
+    "precio": 1800,
+    "descripcion": "",
+    "stock": 40,
+    "imagen": "https://images.unsplash.com/photo-1573080496219-bb080dd4f877",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 16,
+    "nombre": "Nuggets",
+    "precio": 2200,
+    "descripcion": "",
+    "stock": 35,
+    "imagen": "https://images.unsplash.com/photo-1562967916-eb82221dfb92",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 17,
+    "nombre": "Combo Burger",
+    "precio": 5000,
+    "descripcion": "",
+    "stock": 12,
+    "imagen": "https://images.unsplash.com/photo-1551615593-ef5fe247e8f7",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 18,
+    "nombre": "Hot Dog",
+    "precio": 1600,
+    "descripcion": "",
+    "stock": 20,
+    "imagen": "https://images.unsplash.com/photo-1599599810769-bcde5a160d32",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 5
+  },
+  {
+    "id": 19,
+    "nombre": "Hamburguesa Veggie",
+    "precio": 3100,
+    "descripcion": "",
+    "stock": 9,
+    "imagen": "https://images.unsplash.com/photo-1520072959219-c595dc870360",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 1
+  },
+  {
+    "id": 20,
+    "nombre": "Pizza Vegana",
+    "precio": 5200,
+    "descripcion": "",
+    "stock": 6,
+    "imagen": "https://images.unsplash.com/photo-1601924582970-9238bcb495d9",
+    "disponible": true,
+    "eliminado": false,
+    "categoriaId": 2
+  }
+]

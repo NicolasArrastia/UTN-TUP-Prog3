@@ -1,0 +1,37 @@
+[
+  {
+    "id": 1,
+    "nombre": "Hamburguesas",
+    "descripcion": "Clásicas y gourmet",
+    "imagen": "",
+    "eliminado": false
+  },
+  {
+    "id": 2,
+    "nombre": "Pizzas",
+    "descripcion": "Finas y tradicionales",
+    "imagen": "",
+    "eliminado": false
+  },
+  {
+    "id": 3,
+    "nombre": "Bebidas",
+    "descripcion": "Gaseosas y jugos",
+    "imagen": "",
+    "eliminado": false
+  },
+  {
+    "id": 4,
+    "nombre": "Postres",
+    "descripcion": "Dulces",
+    "imagen": "",
+    "eliminado": false
+  },
+  {
+    "id": 5,
+    "nombre": "Comida rápida",
+    "descripcion": "Snacks y combos",
+    "imagen": "",
+    "eliminado": false
+  }
+]

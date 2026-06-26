@@ -1,0 +1,252 @@
+[
+  {
+    "id": 1,
+    "fecha": "2026-06-01",
+    "estado": "PENDIENTE",
+    "total": 5500,
+    "formaPago": "TARJETA",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 1,
+        "cantidad": 1,
+        "subtotal": 2500
+      },
+      {
+        "idProducto": 9,
+        "cantidad": 1,
+        "subtotal": 1200
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "fecha": "2026-06-02",
+    "estado": "CONFIRMADO",
+    "total": 7200,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 5,
+        "cantidad": 1,
+        "subtotal": 4000
+      },
+      {
+        "idProducto": 15,
+        "cantidad": 1,
+        "subtotal": 1800
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "fecha": "2026-06-02",
+    "estado": "TERMINADO",
+    "total": 3200,
+    "formaPago": "TRANSFERENCIA",
+    "idUsuario": 3,
+    "detalles": [
+      {
+        "idProducto": 2,
+        "cantidad": 1,
+        "subtotal": 3200
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "fecha": "2026-06-03",
+    "estado": "CANCELADO",
+    "total": 4500,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 4,
+    "detalles": [
+      {
+        "idProducto": 6,
+        "cantidad": 1,
+        "subtotal": 4500
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "fecha": "2026-06-04",
+    "estado": "PENDIENTE",
+    "total": 2800,
+    "formaPago": "TARJETA",
+    "idUsuario": 3,
+    "detalles": [
+      {
+        "idProducto": 3,
+        "cantidad": 1,
+        "subtotal": 2800
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "fecha": "2026-06-04",
+    "estado": "CONFIRMADO",
+    "total": 6100,
+    "formaPago": "TRANSFERENCIA",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 4,
+        "cantidad": 1,
+        "subtotal": 3400
+      },
+      {
+        "idProducto": 10,
+        "cantidad": 3,
+        "subtotal": 2700
+      }
+    ]
+  },
+  {
+    "id": 7,
+    "fecha": "2026-06-05",
+    "estado": "TERMINADO",
+    "total": 9000,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 4,
+    "detalles": [
+      {
+        "idProducto": 8,
+        "cantidad": 1,
+        "subtotal": 5000
+      },
+      {
+        "idProducto": 12,
+        "cantidad": 2,
+        "subtotal": 3000
+      }
+    ]
+  },
+  {
+    "id": 8,
+    "fecha": "2026-06-05",
+    "estado": "PENDIENTE",
+    "total": 1600,
+    "formaPago": "TARJETA",
+    "idUsuario": 3,
+    "detalles": [
+      {
+        "idProducto": 18,
+        "cantidad": 1,
+        "subtotal": 1600
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "fecha": "2026-06-06",
+    "estado": "CONFIRMADO",
+    "total": 7400,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 17,
+        "cantidad": 1,
+        "subtotal": 5000
+      },
+      {
+        "idProducto": 9,
+        "cantidad": 2,
+        "subtotal": 2400
+      }
+    ]
+  },
+  {
+    "id": 10,
+    "fecha": "2026-06-06",
+    "estado": "TERMINADO",
+    "total": 4300,
+    "formaPago": "TRANSFERENCIA",
+    "idUsuario": 4,
+    "detalles": [
+      {
+        "idProducto": 7,
+        "cantidad": 1,
+        "subtotal": 4300
+      }
+    ]
+  },
+  {
+    "id": 11,
+    "fecha": "2026-06-07",
+    "estado": "PENDIENTE",
+    "total": 2200,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 16,
+        "cantidad": 1,
+        "subtotal": 2200
+      }
+    ]
+  },
+  {
+    "id": 12,
+    "fecha": "2026-06-07",
+    "estado": "CONFIRMADO",
+    "total": 3100,
+    "formaPago": "TARJETA",
+    "idUsuario": 3,
+    "detalles": [
+      {
+        "idProducto": 19,
+        "cantidad": 1,
+        "subtotal": 3100
+      }
+    ]
+  },
+  {
+    "id": 13,
+    "fecha": "2026-06-08",
+    "estado": "TERMINADO",
+    "total": 5200,
+    "formaPago": "TRANSFERENCIA",
+    "idUsuario": 2,
+    "detalles": [
+      {
+        "idProducto": 20,
+        "cantidad": 1,
+        "subtotal": 5200
+      }
+    ]
+  },
+  {
+    "id": 14,
+    "fecha": "2026-06-08",
+    "estado": "CANCELADO",
+    "total": 1800,
+    "formaPago": "EFECTIVO",
+    "idUsuario": 4,
+    "detalles": [
+      {
+        "idProducto": 15,
+        "cantidad": 1,
+        "subtotal": 1800
+      }
+    ]
+  },
+  {
+    "id": 15,
+    "fecha": "2026-06-09",
+    "estado": "PENDIENTE",
+    "total": 4300,
+    "formaPago": "TARJETA",
+    "idUsuario": 3,
+    "detalles": [
+      {
+        "idProducto": 7,
+        "cantidad": 1,
+        "subtotal": 4300
+      }
+    ]
+  }
+]

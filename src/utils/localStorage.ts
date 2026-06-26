@@ -1,4 +1,4 @@
-import type { IUser } from "../types/IUser";
+import type { IUser } from "../types/user";
 
 // GENERIC
 export const setItem = <T>(key: string, value: T) => {
@@ -20,7 +20,7 @@ export const setUsers = (users: IUser[]) => {
 };
 
 // SESSION (single user)
-export const saveSession = (user: IUser) => {
+export const saveSession = (user: Omit<IUser, "password">) => {
   setItem("userData", user);
 };
 

@@ -1,34 +1,78 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Food Store</title>
+  </head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Inicio | Food Store</title>
-</head>
+<body class="min-h-screen bg-gray-100">
+  <header class="bg-white shadow-sm">
+    <div
+      class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between"
+    >
+      <h1 class="text-2xl font-bold text-orange-600">Food Store</h1>
 
-<body>
-    <header class="header">
-        <h1 class="header__title">Food Store</h1>
+      <div class="flex flex-wrap items-center gap-3">
+        <input
+          id="searchInput"
+          type="search"
+          placeholder="Buscar productos..."
+          class="w-64 rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-orange-500"
+        />
 
-        <div class="header__actions">
-            <input type="text" id="searchInput" class="header__search" placeholder="Buscar productos..." />
+        <select
+          id="sortSelect"
+          class="rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-orange-500"
+        >
+          <option value="nameAsc">Nombre A-Z</option>
+          <option value="nameDesc">Nombre Z-A</option>
+          <option value="priceAsc">Precio ↑</option>
+          <option value="priceDesc">Precio ↓</option>
+        </select>
 
-            <a href="/src/pages/store/cart/cart.html" class="header__cart">
-            🛒
-            <span id="cartCount" class="header__cart-count">0</span>
-            </a>
+        <a
+          href="/src/pages/store/cart/cart.html"
+          class="relative rounded-lg p-2 transition hover:bg-gray-100"
+          aria-label="Carrito"
+        >
+          <span class="text-2xl">🛒</span>
 
-            <button id="logoutButton" class="header__logout">Logout</button>
-        </div>
-    </header>
+          <span
+            id="cartBadge"
+            class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-semibold text-white"
+          >
+            0
+          </span>
+        </a>
 
-    <main class="store">
-        <aside id="categories" class="store__categories"></aside>
-        <section id="products" class="store__products"></section>
-    </main>
+        <button
+          id="logoutButton"
+          class="rounded-lg bg-red-500 px-4 py-2 font-medium text-white transition hover:bg-red-600"
+        >
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </header>
 
-    <script type="module" src="./home.ts"></script>
-</body>
+  <main class="mx-auto flex max-w-7xl flex-col gap-6 p-6 lg:flex-row">
+    <aside
+      class="w-full rounded-lg bg-white p-5 shadow lg:w-64"
+    >
+      <h2 class="mb-4 text-lg font-semibold">Categorías</h2>
 
-</html>
+      <div id="categoriesContainer"></div>
+    </aside>
+
+    <section class="flex-1">
+      <div
+        id="productsContainer"
+        class="grid grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3"
+      ></div>
+    </section>
+  </main>
+
+  <script type="module" src="./home.ts"></script>
+  <script type="module" src="/src/main.ts"></script>
+</body></html>
