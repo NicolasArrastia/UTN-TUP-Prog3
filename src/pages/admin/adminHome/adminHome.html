@@ -1,18 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Panel de Administración</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+    <link
+      rel="stylesheet"
+      href="/src/style.css"
+    />
+  </head>
 
-<body>
-    <h1>Hola desde la vista de admin</h1>
-    <button id="logoutButton">Logout</button>
-    <script type="module" src="./adminHome.ts"></script>
-    <script type="module" src="/src/main.ts"></script>
-</body>
+  <body class="min-h-screen bg-gray-100">
+    <main class="mx-auto flex min-h-screen max-w-7xl">
+        <div id="sidebar"></div>
 
+        <section class="flex-1 p-8 text-neutral-800">
+            <h2 class="mb-8 text-3xl font-bold">
+                Dashboard
+            </h2>
 
+        <section
+          class="grid gap-6 md:grid-cols-2 xl:grid-cols-4"
+        >
+          <article class="rounded-xl bg-white p-6 shadow">
+            <p class="text-gray-500">
+              Categorías
+            </p>
+
+            <h3
+              id="categoriesCount"
+              class="mt-2 text-4xl font-bold"
+            >
+              -
+            </h3>
+          </article>
+
+          <article class="rounded-xl bg-white p-6 shadow">
+            <p class="text-gray-500">
+              Productos
+            </p>
+
+            <h3
+              id="productsCount"
+              class="mt-2 text-4xl font-bold"
+            >
+              -
+            </h3>
+          </article>
+
+          <article class="rounded-xl bg-white p-6 shadow">
+            <p class="text-gray-500">
+              Pedidos
+            </p>
+
+            <h3
+              id="ordersCount"
+              class="mt-2 text-4xl font-bold"
+            >
+              -
+            </h3>
+          </article>
+
+          <article class="rounded-xl bg-white p-6 shadow">
+            <p class="text-gray-500">
+              Productos disponibles
+            </p>
+
+            <h3
+              id="availableProductsCount"
+              class="mt-2 text-4xl font-bold"
+            >
+              -
+            </h3>
+          </article>
+        </section>
+
+        <section
+          class="mt-8 rounded-xl bg-white p-6 shadow"
+        >
+          <h3 class="mb-6 text-xl font-semibold">
+            Resumen
+          </h3>
+
+          <div
+            class="grid gap-6 lg:grid-cols-3"
+          >
+            <div>
+              <h4 class="mb-2 font-semibold">
+                Categorías activas
+              </h4>
+
+              <p id="activeCategories">
+                -
+              </p>
+            </div>
+
+            <div>
+              <h4 class="mb-2 font-semibold">
+                Productos
+              </h4>
+
+              <div class="space-y-1">
+                <p>
+                  Activos:
+                  <span id="activeProducts">-</span>
+                </p>
+
+                <p>
+                  Inactivos:
+                  <span id="inactiveProducts">-</span>
+                </p>
+              </div>
+            </div>
+
+            <div>
+              <h4 class="mb-2 font-semibold">
+                Pedidos por estado
+              </h4>
+
+              <div
+                id="ordersByStatus"
+                class="space-y-1"
+              ></div>
+            </div>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="./adminHome.ts"
+    ></script>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </body>
 </html>

@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Productos | Administración</title>
+
+    <link
+      rel="stylesheet"
+      href="/src/style.css"
+    />
+  </head>
+
+  <body class="min-h-screen bg-gray-100">
+    <main class="mx-auto flex min-h-screen max-w-7xl">
+      <div id="sidebar"></div>
+
+      <section class="flex-1 p-8">
+        <h2 class="mb-8 text-3xl font-bold">
+          Gestión de Productos
+        </h2>
+
+        <div class="overflow-hidden rounded-xl bg-white shadow">
+          <div class="overflow-x-auto">
+            <table class="min-w-full">
+              <thead class="bg-gray-100">
+                <tr>
+                  <th class="px-5 py-4 text-left">ID</th>
+                  <th class="px-5 py-4 text-left">Imagen</th>
+                  <th class="px-5 py-4 text-left">Nombre</th>
+                  <th class="px-5 py-4 text-left">Descripción</th>
+                  <th class="px-5 py-4 text-left">Precio</th>
+                  <th class="px-5 py-4 text-left">Categoría</th>
+                  <th class="px-5 py-4 text-left">Stock</th>
+                  <th class="px-5 py-4 text-left">Estado</th>
+                </tr>
+              </thead>
+
+              <tbody
+                id="productsTableBody"
+                class="divide-y divide-gray-200"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <script
+      type="module"
+      src="./products.ts"
+    ></script>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </body>
+</html>

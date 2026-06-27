@@ -72,7 +72,7 @@
   {
     "id": 5,
     "fecha": "2026-06-04",
-    "estado": "PENDIENTE",
+    "estado": "CANCELADO",
     "total": 2800,
     "formaPago": "TARJETA",
     "idUsuario": 3,

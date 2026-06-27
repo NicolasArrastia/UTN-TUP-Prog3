@@ -25,24 +25,24 @@ export function isAdmin(): boolean {
   return getSessionUser()?.rol === "ADMIN";
 }
 
-export function validateSession(): SessionUser {
-  const user = getSessionUser();
+// export function validateSession(): SessionUser {
+//   const user = getSessionUser();
 
-  if (!user) {
-    navigate(ROUTES.LOGIN);
-    throw new Error("User is not authenticated");
-  }
+//   if (!user) {
+//     navigate(ROUTES.LOGIN);
+//     throw new Error("User is not authenticated");
+//   }
 
-  return user;
-}
+//   return user;
+// }
 
-export function validateAdminSession(): SessionUser {
-  const user = validateSession();
+// export function validateAdminSession(): SessionUser {
+//   const user = validateSession();
 
-  if (user.rol !== "ADMIN") {
-    window.location.href = "/src/pages/store/home/home.html";
-    throw new Error("User is not an administrator");
-  }
+//   if (user.rol !== "ADMIN") {
+//     window.location.href = "/src/pages/store/home/home.html";
+//     throw new Error("User is not an administrator");
+//   }
 
-  return user;
-}
+//   return user;
+// }

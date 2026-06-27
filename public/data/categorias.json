@@ -3,35 +3,35 @@
     "id": 1,
     "nombre": "Hamburguesas",
     "descripcion": "Clásicas y gourmet",
-    "imagen": "",
+    "imagen": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd",
     "eliminado": false
   },
   {
     "id": 2,
     "nombre": "Pizzas",
     "descripcion": "Finas y tradicionales",
-    "imagen": "",
+    "imagen": "https://images.unsplash.com/photo-1513104890138-7c749659a591",
     "eliminado": false
   },
   {
     "id": 3,
     "nombre": "Bebidas",
     "descripcion": "Gaseosas y jugos",
-    "imagen": "",
+    "imagen": "https://images.unsplash.com/photo-1613478223719-2ab802602423",
     "eliminado": false
   },
   {
     "id": 4,
     "nombre": "Postres",
     "descripcion": "Dulces",
-    "imagen": "",
+    "imagen": "https://images.unsplash.com/photo-1563805042-7684c019e1cb",
     "eliminado": false
   },
   {
     "id": 5,
     "nombre": "Comida rápida",
     "descripcion": "Snacks y combos",
-    "imagen": "",
+    "imagen": "https://images.unsplash.com/photo-1551615593-ef5fe247e8f7",
     "eliminado": false
   }
 ]

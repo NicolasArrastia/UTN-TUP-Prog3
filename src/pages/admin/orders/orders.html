@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Pedidos | Administración</title>
+
+    <link
+      rel="stylesheet"
+      href="/src/style.css"
+    />
+  </head>
+
+  <body class="min-h-screen bg-gray-100">
+    <main class="mx-auto flex min-h-screen max-w-7xl">
+      <div id="sidebar"></div>
+
+      <section class="flex-1 p-8">
+        <div
+          class="mb-8 flex flex-col gap-4 md:flex-row md:items-center md:justify-between"
+        >
+          <h2 class="text-3xl font-bold">
+            Gestión de Pedidos
+          </h2>
+
+          <select
+            id="statusFilter"
+            class="rounded-lg border border-gray-300 bg-white px-4 py-2 outline-none focus:border-orange-500"
+          >
+            <option value="ALL">Todos</option>
+            <option value="PENDIENTE">Pendiente</option>
+            <option value="CONFIRMADO">Confirmado</option>
+            <option value="TERMINADO">Terminado</option>
+            <option value="CANCELADO">Cancelado</option>
+          </select>
+        </div>
+
+        <section
+          id="ordersContainer"
+          class="grid gap-4"
+        ></section>
+      </section>
+    </main>
+
+    <div
+      id="orderModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-6"
+    >
+      <div
+        class="w-full max-w-2xl rounded-xl bg-white p-6 shadow-xl"
+      >
+        <div class="mb-6 flex items-center justify-between">
+          <h3
+            id="modalTitle"
+            class="text-2xl font-bold"
+          ></h3>
+
+          <button
+            id="closeModal"
+            class="rounded-lg border px-3 py-1 hover:bg-gray-100"
+          >
+            ✕
+          </button>
+        </div>
+
+        <div
+          id="modalBody"
+          class="space-y-3"
+        ></div>
+      </div>
+    </div>
+
+    <script
+      type="module"
+      src="./orders.ts"
+    ></script>
+
+    <script
+      type="module"
+      src="/src/main.ts"
+    ></script>
+  </body>
+</html>
