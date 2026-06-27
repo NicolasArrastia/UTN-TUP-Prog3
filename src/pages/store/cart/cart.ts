@@ -1,5 +1,11 @@
+import { mountStoreHeader } from "../../../components/storeHeader";
 import { CartItem } from "../../../types/cartItem";
 import { getCart, saveCart } from "../../../utils/cart";
+
+mountStoreHeader({
+  container: document.getElementById("app")!,
+  position: "prepend",
+});
 
 const SHIPPING_COST = 0;
 

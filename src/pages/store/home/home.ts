@@ -8,6 +8,13 @@ import { addToCart, getCartItemsCount } from "../../../utils/cart";
 import { navigate, ROUTES } from "../../../utils/navigate";
 import { updateCartBadge } from "../../../utils/updateCartBadge";
 
+import { mountStoreHeader } from "../../../components/storeHeader";
+
+mountStoreHeader({
+  showSearch: true,
+  showSort: true,
+});
+
 let categories: Category[] = [];
 
 let products: Product[] = [];

@@ -1,8 +1,11 @@
+import { mountStoreHeader } from "../../../components/storeHeader";
 import { getProducts } from "../../../utils/api";
 import { logout } from "../../../utils/auth";
 import { addToCart } from "../../../utils/cart";
 import { ROUTES } from "../../../utils/navigate";
 import { updateCartBadge } from "../../../utils/updateCartBadge";
+
+mountStoreHeader();
 
 const params = new URLSearchParams(window.location.search);
 const productId = Number(params.get("id"));

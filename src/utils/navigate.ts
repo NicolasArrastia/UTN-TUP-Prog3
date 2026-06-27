@@ -10,7 +10,7 @@ export const ROUTES = {
 
   CHECKOUT: "/src/pages/store/checkout/checkout.html",
 
-  MY_ORDERS: "/src/pages/store/orders/orders.html",
+  MY_ORDERS: "/src/pages/client/orders/orders.html",
 } as const;
 
 export const navigate = (route: string): void => {

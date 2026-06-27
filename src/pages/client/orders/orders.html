@@ -4,31 +4,60 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Mis pedidos</title>
-    <link rel="stylesheet" href="/src/style.css" />
   </head>
 
-  <body>
-    <header class="page-header">
-      <h1>Mis pedidos</h1>
-    </header>
+  <body class="min-h-screen bg-gray-100">
 
-    <main class="orders-container">
-      <section id="ordersList" class="orders-list"></section>
+    <!-- Main -->
+    <main class="mx-auto max-w-7xl p-6">
 
-      <div id="emptyState" class="empty-state hidden">
-        <p>No tenés pedidos aún</p>
-        <a href="/src/pages/store/home/index.html">Ir a la tienda</a>
+      <!-- Orders -->
+      <section
+        id="ordersList"
+        class="grid grid-cols-1 gap-4"
+      ></section>
+
+      <!-- Empty state -->
+      <div
+        id="emptyState"
+        class="mt-10 hidden flex-col items-center justify-center rounded-lg bg-white p-10 text-center shadow"
+      >
+        <p class="text-lg font-medium text-gray-700">
+          No tenés pedidos aún
+        </p>
+
+        <a
+          href="/src/pages/store/home/home.html"
+          class="mt-4 rounded-lg bg-orange-600 px-4 py-2 font-medium text-white transition hover:bg-orange-700"
+        >
+          Ir a la tienda
+        </a>
       </div>
+
     </main>
 
-    <div id="orderModal" class="modal hidden">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h2 id="modalTitle">Pedido</h2>
-          <button id="closeModal">X</button>
+    <!-- Modal -->
+    <div
+      id="orderModal"
+      class="fixed inset-0 hidden items-center justify-center bg-black/50 p-4"
+    >
+      <div class="w-full max-w-2xl rounded-xl bg-white shadow-lg">
+
+        <div class="flex items-center justify-between border-b px-6 py-4">
+          <h2 id="modalTitle" class="text-lg font-semibold">
+            Pedido
+          </h2>
+
+          <button
+            id="closeModal"
+            class="rounded-md px-2 py-1 text-gray-600 hover:bg-gray-100"
+          >
+            ✕
+          </button>
         </div>
 
-        <div id="modalBody" class="modal-body"></div>
+        <div id="modalBody" class="p-6"></div>
+
       </div>
     </div>
 
