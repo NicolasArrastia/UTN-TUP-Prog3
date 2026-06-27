@@ -102,7 +102,7 @@ const renderCart = (): void => {
         </p>
       </div>
 
-      <div class="flex flex-col items-end gap-3">
+      <div class="flex flex-col items-end gap-1">
 
         <div class="flex items-center gap-2">
 
@@ -117,12 +117,17 @@ const renderCart = (): void => {
           </span>
 
           <button
-            class="increase h-9 w-9 rounded-lg bg-orange-500 text-white transition hover:bg-orange-600"
+            class="increase h-9 w-9 rounded-lg bg-orange-500 text-white transition hover:bg-orange-600 disabled:cursor-not-allowed disabled:bg-gray-300"
+            ${item.quantity >= item.product.stock ? "disabled" : ""}
           >
             +
           </button>
 
         </div>
+
+        <p class="text-xs text-gray-500">
+          Stock disponible: ${item.product.stock}
+        </p>
 
         <p class="font-bold text-gray-800">
           $${item.product.precio * item.quantity}
@@ -158,6 +163,10 @@ const renderCart = (): void => {
     });
 
     increaseButton.addEventListener("click", () => {
+      if (item.quantity >= item.product.stock) {
+        return;
+      }
+
       item.quantity++;
 
       saveCart(cart);

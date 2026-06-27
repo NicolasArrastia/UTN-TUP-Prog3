@@ -5,6 +5,8 @@ import { getCategories, getProducts } from "../../../utils/api";
 import type { Category } from "../../../types/category";
 import type { Product } from "../../../types/product";
 import { addToCart, getCartItemsCount } from "../../../utils/cart";
+import { navigate, ROUTES } from "../../../utils/navigate";
+import { updateCartBadge } from "../../../utils/updateCartBadge";
 
 let categories: Category[] = [];
 
@@ -29,8 +31,6 @@ const productsContainer = document.getElementById(
   "productsContainer",
 ) as HTMLDivElement;
 
-const cartBadge = document.getElementById("cartBadge") as HTMLSpanElement;
-
 const initialize = async (): Promise<void> => {
   registerEvents();
 
@@ -40,7 +40,7 @@ const initialize = async (): Promise<void> => {
 
   applyFilters();
 
-  renderCartBadge();
+  updateCartBadge();
 };
 
 const registerEvents = (): void => {
@@ -192,7 +192,7 @@ const renderProducts = (): void => {
     ) as HTMLButtonElement;
 
     detailsButton.addEventListener("click", () => {
-      window.location.href = `/src/pages/store/productDetail/productDetail.html?id=${product.id}`;
+      navigate(ROUTES.PRODUCT_DETAILS(product.id));
     });
 
     cartButton.addEventListener("click", (event) => {
@@ -200,7 +200,7 @@ const renderProducts = (): void => {
 
       addToCart(product, 1);
 
-      renderCartBadge();
+      updateCartBadge();
     });
 
     productsContainer.appendChild(article);
@@ -243,10 +243,6 @@ const applyFilters = (): void => {
   }
 
   renderProducts();
-};
-
-const renderCartBadge = (): void => {
-  cartBadge.textContent = String(getCartItemsCount());
 };
 
 initialize();

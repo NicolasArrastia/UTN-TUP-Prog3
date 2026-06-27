@@ -61,8 +61,10 @@ form.addEventListener("submit", async (event) => {
 // UTILIDADES PARA DEMO
 const adminDemo = document.querySelector<HTMLSpanElement>("#admin-demo");
 const customerDemo = document.querySelector<HTMLSpanElement>("#customer-demo");
+const customer2Demo =
+  document.querySelector<HTMLSpanElement>("#customer2-demo");
 
-if (!adminDemo || !customerDemo) {
+if (!adminDemo || !customerDemo || !customer2Demo) {
   throw new Error("Demo login elements not found");
 }
 
@@ -72,4 +74,8 @@ adminDemo.addEventListener("click", async () => {
 
 customerDemo.addEventListener("click", async () => {
   await login("cliente@food.com", "cliente123", errorMessage);
+});
+
+customer2Demo.addEventListener("click", async () => {
+  await login("cliente2@food.com", "cliente123", errorMessage);
 });

@@ -1,33 +1,33 @@
-import type { IUser } from "../types/user";
+// import type { IUser } from "../types/user";
 
-// GENERIC
-export const setItem = <T>(key: string, value: T) => {
-  localStorage.setItem(key, JSON.stringify(value));
-};
+// // GENERIC
+// export const setItem = <T>(key: string, value: T) => {
+//   localStorage.setItem(key, JSON.stringify(value));
+// };
 
-export const getItem = <T>(key: string): T | null => {
-  const data = localStorage.getItem(key);
-  return data ? JSON.parse(data) : null;
-};
+// export const getItem = <T>(key: string): T | null => {
+//   const data = localStorage.getItem(key);
+//   return data ? JSON.parse(data) : null;
+// };
 
-// USERS (array)
-export const getUsers = (): IUser[] => {
-  return getItem<IUser[]>("users") || [];
-};
+// // USERS (array)
+// export const getUsers = (): IUser[] => {
+//   return getItem<IUser[]>("users") || [];
+// };
 
-export const setUsers = (users: IUser[]) => {
-  setItem("users", users);
-};
+// export const setUsers = (users: IUser[]) => {
+//   setItem("users", users);
+// };
 
-// SESSION (single user)
-export const saveSession = (user: Omit<IUser, "password">) => {
-  setItem("userData", user);
-};
+// // SESSION (single user)
+// export const saveSession = (user: Omit<IUser, "password">) => {
+//   setItem("userData", user);
+// };
 
-export const getSession = (): IUser | null => {
-  return getItem<IUser>("userData");
-};
+// export const getSession = (): IUser | null => {
+//   return getItem<IUser>("userData");
+// };
 
-export const removeSession = () => {
-  localStorage.removeItem("userData");
-};
+// export const removeSession = () => {
+//   localStorage.removeItem("userData");
+// };

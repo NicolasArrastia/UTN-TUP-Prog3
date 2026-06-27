@@ -21,18 +21,18 @@
     "id": 3,
     "nombre": "Maria",
     "apellido": "Gomez",
-    "mail": "maria@mail.com",
+    "mail": "cliente2@food.com",
     "celular": "3333333333",
-    "password": "123456",
+    "password": "cliente123",
     "rol": "USUARIO"
   },
   {
     "id": 4,
     "nombre": "Luis",
     "apellido": "Diaz",
-    "mail": "luis@mail.com",
+    "mail": "cliente3@food.com",
     "celular": "4444444444",
-    "password": "123456",
+    "password": "cliente123",
     "rol": "USUARIO"
   }
 ]

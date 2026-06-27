@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Detalle del Producto | Food Store</title>
+  </head>
+
+  <body class="min-h-screen bg-gray-100">
+    <header class="bg-white shadow-sm">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-4 lg:flex-row lg:items-center lg:justify-between"
+      >
+        <h1 class="text-2xl font-bold text-orange-600">Food Store</h1>
+
+        <div class="flex items-center gap-3">
+          <a
+            href="/src/pages/store/cart/cart.html"
+            class="relative rounded-lg p-2 transition hover:bg-gray-100"
+            aria-label="Carrito"
+          >
+            <span class="text-2xl">🛒</span>
+
+            <span
+              id="cartBadge"
+              class="absolute -right-1 -top-1 flex h-5 w-5 items-center justify-center rounded-full bg-red-500 text-xs font-semibold text-white"
+            >
+              0
+            </span>
+          </a>
+
+          <button
+            id="logoutButton"
+            class="rounded-lg bg-red-500 px-4 py-2 font-medium text-white transition hover:bg-red-600"
+          >
+            Cerrar sesión
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl p-6">
+      <button
+        id="backButton"
+        class="mb-6 rounded-lg border border-gray-300 bg-white px-4 py-2 transition hover:bg-gray-100"
+      >
+        ← Volver al catálogo
+      </button>
+
+      <section
+        id="productContainer"
+        class="grid gap-8 rounded-xl bg-white p-8 shadow lg:grid-cols-2"
+      >
+        <div>
+          <img
+            id="productImage"
+            class="aspect-square w-full rounded-xl object-cover"
+            src=""
+            alt=""
+          />
+        </div>
+
+        <div class="flex flex-col">
+          <span
+            id="productStatus"
+            class="mb-3 w-fit rounded-full px-3 py-1 text-sm font-semibold"
+          >
+            Disponible
+          </span>
+
+          <h2
+            id="productName"
+            class="text-4xl font-bold text-gray-900"
+          ></h2>
+
+          <p
+            id="productDescription"
+            class="mt-4 text-gray-600"
+          ></p>
+
+          <div class="mt-6 space-y-2">
+            <p class="text-4xl font-bold text-orange-600">
+              $<span id="productPrice"></span>
+            </p>
+
+            <p class="text-gray-700">
+              Stock:
+              <span
+                id="productStock"
+                class="font-semibold"
+              ></span>
+            </p>
+          </div>
+
+          <div class="mt-8 flex items-center gap-4">
+            <label
+              for="quantityInput"
+              class="font-medium text-gray-700"
+            >
+              Cantidad
+            </label>
+
+            <input
+              id="quantityInput"
+              type="number"
+              min="1"
+              value="1"
+              class="w-24 rounded-lg border border-gray-300 px-3 py-2 outline-none focus:border-orange-500"
+            />
+          </div>
+
+          <button
+            id="addToCartButton"
+            class="mt-8 rounded-lg bg-orange-600 px-6 py-3 font-semibold text-white transition hover:bg-orange-700 disabled:cursor-not-allowed disabled:bg-gray-400"
+          >
+            Agregar al carrito
+          </button>
+
+          <p
+            id="feedbackMessage"
+            class="mt-4 font-medium text-green-600"
+          ></p>
+        </div>
+      </section>
+    </main>
+
+    <script type="module" src="./productDetail.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

@@ -1,8 +1,21 @@
 import { CartItem } from "../types/cartItem";
 import { Product } from "../types/product";
+import { getSessionUser } from "./auth";
 import { getItem, removeItem, setItem } from "./storage";
 
-const CART_KEY = "cart";
+const session = getSessionUser();
+
+const getCartKey = (): string => {
+  const session = getSessionUser();
+
+  if (!session) {
+    return "cart_guest";
+  }
+
+  return `cart_${session.id}`;
+};
+
+const CART_KEY = getCartKey();
 
 export const getCart = (): CartItem[] => {
   return getItem<CartItem[]>(CART_KEY) ?? [];

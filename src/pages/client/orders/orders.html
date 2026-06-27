@@ -1,17 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mis pedidos</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Login</title>
-</head>
+  <body>
+    <header class="page-header">
+      <h1>Mis pedidos</h1>
+    </header>
 
-<body>
-  <main class="">
-    orders
-  </main>
+    <main class="orders-container">
+      <section id="ordersList" class="orders-list"></section>
 
-  <script type="module" src="./orders.ts"></script>
-</body>
+      <div id="emptyState" class="empty-state hidden">
+        <p>No tenés pedidos aún</p>
+        <a href="/src/pages/store/home/index.html">Ir a la tienda</a>
+      </div>
+    </main>
+
+    <div id="orderModal" class="modal hidden">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 id="modalTitle">Pedido</h2>
+          <button id="closeModal">X</button>
+        </div>
+
+        <div id="modalBody" class="modal-body"></div>
+      </div>
+    </div>
+
+    <script type="module" src="./orders.ts"></script>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
 </html>
