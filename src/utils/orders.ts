@@ -1,6 +1,6 @@
 import { Order, OrderDetail } from "../types/order";
 import { Product } from "../types/product";
-import { getProducts } from "./api";
+import { getOrders, getProducts } from "./api";
 import { getSessionUser } from "./auth";
 import { getItem, setItem } from "./storage";
 
@@ -34,22 +34,25 @@ export const populateOrderDetails = async (orders: Order[]) => {
   return formattedOrders;
 };
 
-export const getOrders = (): Order[] => {
+export const getLocalOrders = (): Order[] => {
   return getItem<Order[]>(ORDERS_KEY) ?? [];
 };
 
-export const getOrdersByUser = async () => {
+export const getOrdersByUser = async (): Promise<PopulatedOrder[]> => {
   const session = getSessionUser();
 
   if (!session) {
     return [];
   }
 
-  const orders = await getOrders().filter(
-    (order) => order.idUsuario === session.id,
-  );
+  const ordersJSON = await populateOrderDetails(await getLocalOrders());
+  const ordersLocal = await getOrders();
 
-  return populateOrderDetails(orders);
+  const allOrders: PopulatedOrder[] = [...ordersJSON, ...ordersLocal];
+
+  const orders = allOrders.filter((order) => order.idUsuario === session.id);
+
+  return orders;
 };
 
 export const saveOrders = (orders: Order[]): void => {
@@ -59,7 +62,7 @@ export const saveOrders = (orders: Order[]): void => {
 export const createOrder = (
   order: Omit<Order, "id" | "fecha" | "estado">,
 ): Order => {
-  const orders = getOrders();
+  const orders = getLocalOrders();
 
   const newOrder: Order = {
     ...order,

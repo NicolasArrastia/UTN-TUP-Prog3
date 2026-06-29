@@ -3,7 +3,7 @@ import { Order, OrderDetail } from "../types/order";
 import { Product } from "../types/product";
 import { User } from "../types/user";
 import {
-  getOrders as getLocalOrders,
+  getLocalOrders as getLocalOrders,
   PopulatedOrder,
   PopulatedOrderDetail,
   populateOrderDetails,
