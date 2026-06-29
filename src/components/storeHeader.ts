@@ -1,5 +1,6 @@
 import { logout } from "../utils/auth";
 import { navigate, ROUTES } from "../utils/navigate";
+import { updateCartBadge } from "../utils/updateCartBadge";
 
 export type StoreHeaderConfig = {
   container?: HTMLElement;
@@ -118,5 +119,6 @@ export const mountStoreHeader = (config?: StoreHeaderConfig) => {
     target.prepend(header);
   }
 
+  updateCartBadge();
   return header;
 };

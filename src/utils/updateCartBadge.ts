@@ -2,6 +2,7 @@ import { getCart } from "./cart";
 
 export const updateCartBadge = () => {
   const badge = document.getElementById("cartBadge");
+  console.log(badge);
 
   if (!badge) {
     return;

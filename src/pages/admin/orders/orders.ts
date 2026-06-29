@@ -2,6 +2,7 @@ import { mountAdminSidebar } from "../../../components/adminSidebar";
 import { Order } from "../../../types/order";
 import { User } from "../../../types/user";
 import { getOrders, getUsers } from "../../../utils/api";
+import { PopulatedOrder } from "../../../utils/orders";
 
 mountAdminSidebar({
   container: document.getElementById("sidebar") as HTMLElement,
@@ -31,7 +32,7 @@ const modalBody = document.getElementById("modalBody") as HTMLElement;
 
 const closeModal = document.getElementById("closeModal") as HTMLButtonElement;
 
-let orders: Order[] = [];
+let orders: PopulatedOrder[] = [];
 let users: User[] = [];
 
 const formatDate = (date: string) => new Date(date).toLocaleDateString("es-AR");
@@ -42,7 +43,7 @@ const getUserName = (userId: number) => {
   return user?.nombre ?? "Desconocido";
 };
 
-const openModal = (order: Order) => {
+const openModal = (order: PopulatedOrder) => {
   modalTitle.textContent = `Pedido #${order.id}`;
 
   modalBody.innerHTML = `
@@ -79,7 +80,7 @@ const openModal = (order: Order) => {
           .map(
             (detail) => `
               <li>
-                Producto ${detail.idProducto}
+                ${detail.nombre}
                 · Cantidad: ${detail.cantidad}
                 · Subtotal: $${detail.subtotal}
               </li>

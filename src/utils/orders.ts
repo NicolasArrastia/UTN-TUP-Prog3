@@ -1,30 +1,76 @@
-import { Order } from "../types/order";
-import { getOrders } from "./api";
-import { getItem, removeItem, setItem } from "./storage";
+import { Order, OrderDetail } from "../types/order";
+import { Product } from "../types/product";
+import { getProducts } from "./api";
+import { getSessionUser } from "./auth";
+import { getItem, setItem } from "./storage";
 
 const ORDERS_KEY = "orders";
 
-export const getLocalOrders = (): Order[] => {
+export interface PopulatedOrderDetail extends OrderDetail {
+  nombre: string;
+}
+
+export interface PopulatedOrder extends Omit<Order, "detalles"> {
+  detalles: PopulatedOrderDetail[];
+}
+
+export const populateOrderDetails = async (orders: Order[]) => {
+  const products = await getProducts();
+
+  let formattedOrders = orders.map((order) => ({
+    ...order,
+    detalles: order.detalles.map((detail) => {
+      const product = products.find(
+        (product) => product.id === detail.idProducto,
+      );
+
+      return {
+        ...detail,
+        nombre: product?.nombre ?? "Producto eliminado",
+      };
+    }),
+  }));
+
+  return formattedOrders;
+};
+
+export const getOrders = (): Order[] => {
   return getItem<Order[]>(ORDERS_KEY) ?? [];
 };
 
-export const getOrdersByUser = async (userId: number): Promise<Order[]> => {
-  const orders = await getOrders();
-  return orders.filter((o) => o.idUsuario === userId);
+export const getOrdersByUser = async () => {
+  const session = getSessionUser();
+
+  if (!session) {
+    return [];
+  }
+
+  const orders = await getOrders().filter(
+    (order) => order.idUsuario === session.id,
+  );
+
+  return populateOrderDetails(orders);
 };
 
-export const saveLocalOrders = (orders: Order[]): void => {
+export const saveOrders = (orders: Order[]): void => {
   setItem(ORDERS_KEY, orders);
 };
 
-export const addLocalOrder = (order: Order): void => {
-  const orders = getLocalOrders();
+export const createOrder = (
+  order: Omit<Order, "id" | "fecha" | "estado">,
+): Order => {
+  const orders = getOrders();
 
-  orders.push(order);
+  const newOrder: Order = {
+    ...order,
+    id: Date.now(),
+    fecha: new Date().toISOString(),
+    estado: "PENDIENTE",
+  };
 
-  saveLocalOrders(orders);
-};
+  orders.push(newOrder);
 
-export const clearLocalOrders = (): void => {
-  removeItem(ORDERS_KEY);
+  saveOrders(orders);
+
+  return newOrder;
 };

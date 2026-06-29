@@ -4,7 +4,7 @@ import { getCategories, getProducts } from "../../../utils/api";
 
 import type { Category } from "../../../types/category";
 import type { Product } from "../../../types/product";
-import { addToCart, getCartItemsCount } from "../../../utils/cart";
+import { addToCart } from "../../../utils/cart";
 import { navigate, ROUTES } from "../../../utils/navigate";
 import { updateCartBadge } from "../../../utils/updateCartBadge";
 

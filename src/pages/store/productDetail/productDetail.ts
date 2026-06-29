@@ -93,5 +93,4 @@ backButton.addEventListener("click", () => {
 
 logoutButton.addEventListener("click", logout);
 
-updateCartBadge();
 loadProduct();

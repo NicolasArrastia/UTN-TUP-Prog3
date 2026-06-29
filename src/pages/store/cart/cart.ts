@@ -1,6 +1,15 @@
 import { mountStoreHeader } from "../../../components/storeHeader";
 import { CartItem } from "../../../types/cartItem";
+import {
+  Order,
+  OrderDetail,
+  PAYMENT_METHODS,
+  PaymentMethod,
+} from "../../../types/order";
+import { getSessionUser } from "../../../utils/auth";
 import { getCart, saveCart } from "../../../utils/cart";
+import { navigate, ROUTES } from "../../../utils/navigate";
+import { createOrder } from "../../../utils/orders";
 
 mountStoreHeader({
   container: document.getElementById("app")!,
@@ -205,5 +214,138 @@ const updateTotals = (): void => {
   shippingElement.textContent = `$${SHIPPING_COST}`;
   totalElement.textContent = `$${total}`;
 };
+
+// === CHECKOUT MODAL ===
+
+// SELECTORS
+const checkoutButton = document.getElementById(
+  "checkoutButton",
+) as HTMLButtonElement;
+
+const paymentMethodSelect = document.getElementById(
+  "paymentMethod",
+) as HTMLSelectElement;
+
+const checkoutModal = document.getElementById(
+  "checkoutModal",
+) as HTMLDivElement;
+
+const cancelCheckoutButton = document.getElementById(
+  "cancelCheckout",
+) as HTMLButtonElement;
+
+// RENDER SELECTORES
+paymentMethodSelect.innerHTML = PAYMENT_METHODS.map(
+  (method) => `
+    <option value="${method}">
+      ${method}
+    </option>
+  `,
+).join("");
+
+const openCheckoutModal = (): void => {
+  checkoutModal.classList.remove("hidden");
+  checkoutModal.classList.add("flex");
+};
+
+const closeCheckoutModal = (): void => {
+  checkoutModal.classList.add("hidden");
+  checkoutModal.classList.remove("flex");
+};
+
+checkoutButton.addEventListener("click", openCheckoutModal);
+cancelCheckoutButton.addEventListener("click", closeCheckoutModal);
+
+// CONFIRMAR MODAL
+
+const checkoutForm = document.getElementById("checkoutForm") as HTMLFormElement;
+
+const phoneInput = document.getElementById("phone") as HTMLInputElement;
+
+const addressInput = document.getElementById("address") as HTMLInputElement;
+
+const notesInput = document.getElementById("notes") as HTMLTextAreaElement;
+
+const clearCurrentCart = (): void => {
+  cart = [];
+
+  saveCart(cart);
+
+  renderCart();
+};
+
+const showSuccessMessage = (): void => {
+  const toast = document.createElement("div");
+
+  toast.className = `
+    fixed top-6 right-6 z-50
+    rounded-lg bg-green-600 px-6 py-3
+    text-white shadow-lg
+  `;
+
+  toast.textContent = "¡Pedido realizado con éxito!";
+
+  document.body.appendChild(toast);
+
+  setTimeout(() => {
+    toast.remove();
+    navigate(ROUTES.MY_ORDERS);
+  }, 2000);
+};
+
+const createCurrentOrder = (): void => {
+  const session = getSessionUser();
+
+  if (!session) {
+    alert("Debe iniciar sesión para realizar una compra.");
+    return;
+  }
+
+  const subtotal = cart.reduce(
+    (acc, item) => acc + item.product.precio * item.quantity,
+    0,
+  );
+
+  let cartDetails: OrderDetail[] = cart.map((i) => ({
+    idProducto: i.product.id,
+    cantidad: i.quantity,
+    subtotal: i.product.precio * i.quantity,
+  }));
+
+  const order: Omit<Order, "id" | "fecha" | "estado"> = {
+    idUsuario: session.id,
+
+    telefono: phoneInput.value,
+
+    direccion: addressInput.value,
+
+    formaPago: paymentMethodSelect.value as PaymentMethod,
+
+    notas: notesInput.value,
+
+    detalles: cartDetails,
+
+    subtotal,
+
+    costoEnvio: SHIPPING_COST,
+
+    total: subtotal + SHIPPING_COST,
+  };
+
+  createOrder(order);
+
+  clearCurrentCart();
+
+  closeCheckoutModal();
+
+  showSuccessMessage();
+};
+
+const handleCheckoutSubmit = (event: SubmitEvent): void => {
+  event.preventDefault();
+  createCurrentOrder();
+};
+
+checkoutForm.addEventListener("submit", handleCheckoutSubmit);
 
 initialize();

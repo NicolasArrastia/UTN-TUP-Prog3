@@ -8,7 +8,6 @@
 
   <body class="min-h-screen bg-gray-100">
 
-
     <!-- Content -->
     <main class="mx-auto flex max-w-7xl flex-col gap-6 p-6 lg:flex-row">
       
@@ -60,6 +59,89 @@
         </button>
       </aside>
     </main>
+
+<div
+  id="checkoutModal"
+  class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-4"
+>
+  <div class="w-full max-w-lg rounded-xl bg-white p-6">
+
+    <h2 class="mb-6 text-xl font-semibold">
+      Confirmar compra
+    </h2>
+
+    <form id="checkoutForm" class="space-y-4">
+
+      <div>
+        <label>Teléfono</label>
+
+        <input
+          id="phone"
+          type="tel"
+          value="+54 223 555-1234"
+          placeholder="Ej: +54 223 123-4567"
+          required
+          class="w-full rounded border border-neutral-400 p-2"
+        />
+      </div>
+
+      <div>
+        <label>Dirección de entrega</label>
+
+        <input
+          id="address"
+          type="text"
+          value="Av. Colón 1234, Mar del Plata"
+          placeholder="Ej: Av. Colón 1234, Mar del Plata"
+          required
+          class="w-full rounded border border-neutral-400 p-2"
+        />
+      </div>
+
+      <div>
+        <label>Método de pago</label>
+
+        <select
+          id="paymentMethod"
+          required
+          class="w-full rounded border border-neutral-400 p-2"
+        ></select>
+      </div>
+
+      <div>
+        <label>Notas adicionales</label>
+
+        <textarea
+          id="notes"
+          rows="3"
+          placeholder="Ej: Tocar timbre, dejar el pedido en recepción..."
+          class="w-full rounded border border-neutral-400 p-2"
+        >Sin observaciones.</textarea>
+      </div>
+
+      <div class="flex justify-end gap-3">
+
+        <button
+          type="button"
+          id="cancelCheckout"
+          class="rounded bg-gray-300 px-4 py-2"
+        >
+          Cancelar
+        </button>
+
+        <button
+          type="submit"
+          class="rounded bg-orange-600 px-4 py-2 text-white transition hover:bg-orange-700"
+        >
+          Confirmar compra
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
 
     <script type="module" src="./cart.ts"></script>
     <script type="module" src="/src/main.ts"></script>

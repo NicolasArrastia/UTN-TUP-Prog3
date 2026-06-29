@@ -3,7 +3,14 @@ export type OrderStatus =
   | "CONFIRMADO"
   | "TERMINADO"
   | "CANCELADO";
-export type PaymentMethod = "TARJETA" | "TRANSFERENCIA" | "EFECTIVO";
+
+export const PAYMENT_METHODS = [
+  "TARJETA",
+  "TRANSFERENCIA",
+  "EFECTIVO",
+] as const;
+
+export type PaymentMethod = (typeof PAYMENT_METHODS)[number];
 
 export interface OrderDetail {
   idProducto: number;
@@ -19,4 +26,10 @@ export interface Order {
   formaPago: PaymentMethod;
   idUsuario: number;
   detalles: OrderDetail[];
+
+  subtotal: number;
+  telefono?: string;
+  direccion?: string;
+  notas?: string;
+  costoEnvio: number;
 }

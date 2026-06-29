@@ -1,7 +1,13 @@
 import { Category } from "../types/category";
-import { Order } from "../types/order";
+import { Order, OrderDetail } from "../types/order";
 import { Product } from "../types/product";
 import { User } from "../types/user";
+import {
+  getOrders as getLocalOrders,
+  PopulatedOrder,
+  PopulatedOrderDetail,
+  populateOrderDetails,
+} from "./orders";
 
 async function getData<T>(resource: string): Promise<T> {
   const request = await fetch(resource);
@@ -25,6 +31,9 @@ export function getProducts() {
   return getData<Product[]>("/data/productos.json");
 }
 
-export function getOrders() {
-  return getData<Order[]>("/data/pedidos.json");
+export async function getOrders(): Promise<PopulatedOrder[]> {
+  const ordersJSON = await getData<Order[]>("/data/pedidos.json");
+  const ordersLocalStorage = getLocalOrders();
+
+  return await populateOrderDetails([...ordersJSON, ...ordersLocalStorage]);
 }

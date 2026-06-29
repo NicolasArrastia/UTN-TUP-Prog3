@@ -14,6 +14,7 @@ export default defineConfig({
 
         storeHome: resolve(__dirname, "src/pages/store/home/home.html"),
         storeCart: resolve(__dirname, "src/pages/store/cart/cart.html"),
+        storeOrders: resolve(__dirname, "src/pages/client/orders/orders.html"),
       },
     },
   },

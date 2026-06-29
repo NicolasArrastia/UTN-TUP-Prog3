@@ -1,7 +1,7 @@
 import { mountStoreHeader } from "../../../components/storeHeader";
 import { Order } from "../../../types/order";
 import { getSessionUser } from "../../../utils/auth";
-import { getOrdersByUser } from "../../../utils/orders";
+import { getOrdersByUser, PopulatedOrder } from "../../../utils/orders";
 
 mountStoreHeader();
 
@@ -24,7 +24,7 @@ const STATUS_COLOR: Record<string, string> = {
 
 const formatDate = (date: string) => new Date(date).toLocaleDateString("es-AR");
 
-const openModal = (order: Order) => {
+const openModal = (order: PopulatedOrder) => {
   modalTitle.textContent = `Pedido #${order.id}`;
 
   modalBody.innerHTML = `
@@ -40,7 +40,7 @@ const openModal = (order: Order) => {
           .map(
             (d) => `
             <li class="flex justify-between border-b pb-1">
-              <span>Producto ${d.idProducto}</span>
+              <span>${d.nombre}</span>
               <span>x${d.cantidad}</span>
               <span>$${d.subtotal}</span>
             </li>
@@ -113,9 +113,7 @@ const renderOrders = (orders: Order[]) => {
 };
 
 const init = async () => {
-  if (!user) return (window.location.href = "/src/pages/auth/login/index.html");
-
-  const orders = await getOrdersByUser(user.id);
+  const orders = await getOrdersByUser();
   renderOrders(orders);
 };
 
