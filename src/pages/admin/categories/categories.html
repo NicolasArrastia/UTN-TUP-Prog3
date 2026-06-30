@@ -19,17 +19,22 @@
       <div id="sidebar"></div>
 
       <section class="flex-1 p-8">
-        <div
-          class="mb-8 flex items-center justify-between"
-        >
-          <h2 class="text-3xl font-bold">
+        <div class="flex justify-between">
+          <h2 class="mb-8 text-3xl font-bold">
             Gestión de Categorías
           </h2>
+
+          <div class="mb-6 flex justify-end">
+            <button
+              id="newCategoryButton"
+              class="rounded-lg bg-orange-500 px-5 py-2 font-medium text-white transition hover:bg-orange-600"
+            >
+              Nueva categoría
+            </button>
+          </div>
         </div>
 
-        <div
-          class="overflow-hidden rounded-xl bg-white shadow"
-        >
+        <div class="overflow-hidden rounded-xl bg-white shadow">
           <table class="min-w-full">
             <thead class="bg-gray-100">
               <tr>
@@ -48,6 +53,10 @@
                 <th class="px-5 py-4 text-left">
                   Descripción
                 </th>
+
+                <th class="px-5 py-4 text-center">
+                  Acciones
+                </th>
               </tr>
             </thead>
 
@@ -59,6 +68,71 @@
         </div>
       </section>
     </main>
+
+    <!-- MODAL -->
+
+    <div
+      id="categoryModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-6"
+    >
+      <div class="w-full max-w-xl rounded-xl bg-white p-6">
+
+        <div class="mb-6 flex items-center justify-between">
+          <h3
+            id="modalTitle"
+            class="text-2xl font-bold"
+          >
+            Nueva categoría
+          </h3>
+
+          <button
+            id="closeModal"
+            class="rounded border px-3 py-1"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form
+          id="categoryForm"
+          class="space-y-4"
+        >
+
+          <input
+            id="name"
+            value="Bebidas"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Nombre"
+            required
+          />
+
+          <textarea
+            id="description"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Descripción"
+            required
+          >Bebidas frías y calientes.</textarea>
+
+          <input
+            id="image"
+            value="https://images.unsplash.com/photo-1544145945-f90425340c7e"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="URL de la imagen"
+            required
+          />
+
+          <button
+            id="submitButton"
+            type="submit"
+            class="w-full rounded-lg bg-orange-500 py-3 text-white transition hover:bg-orange-600"
+          >
+            Crear categoría
+          </button>
+
+        </form>
+
+      </div>
+    </div>
 
     <script
       type="module"
