@@ -41,7 +41,7 @@ export const createStoreHeader = (config?: StoreHeaderConfig) => {
 
   if (showOrders) {
     const orders = document.createElement("button");
-    orders.textContent = "Pedidos";
+    orders.textContent = "Mis Pedidos";
     orders.className =
       "text-gray-700 font-medium hover:text-orange-600 transition";
 

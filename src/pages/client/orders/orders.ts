@@ -61,7 +61,7 @@ const openModal = (order: PopulatedOrder) => {
   modal.classList.add("flex");
 };
 
-const renderOrders = (orders: Order[]) => {
+const renderOrders = (orders: PopulatedOrder[]) => {
   if (orders.length === 0) {
     emptyState.classList.remove("hidden");
     return;
@@ -90,8 +90,9 @@ const renderOrders = (orders: Order[]) => {
           <p class="truncate">
             ${o.detalles
               .slice(0, 3)
-              .map((d) => `Prod ${d.idProducto}`)
+              .map((d) => d.nombre)
               .join(", ")}
+            ${o.detalles.length > 3 ? ` y ${o.detalles.length - 3} más` : ""}
           </p>
 
           <p class="font-semibold text-gray-800">
