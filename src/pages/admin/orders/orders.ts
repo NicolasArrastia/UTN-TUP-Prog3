@@ -59,10 +59,27 @@ const openModal = (order: PopulatedOrder) => {
         ${formatDate(order.fecha)}
       </p>
 
-      <p>
+      <div class="flex items-center gap-3">
         <strong>Estado:</strong>
-        ${order.estado}
-      </p>
+
+        <select
+          id="orderStatus"
+          class="rounded-lg border border-gray-300 px-3 py-2"
+        >
+          ${["PENDIENTE", "CONFIRMADO", "TERMINADO", "CANCELADO"]
+            .map(
+              (status) => `
+                <option
+                  value="${status}"
+                  ${status === order.estado ? "selected" : ""}
+                >
+                  ${status}
+                </option>
+              `,
+            )
+            .join("")}
+        </select>
+      </div>
 
       <p>
         <strong>Forma de pago:</strong>
@@ -95,11 +112,37 @@ const openModal = (order: PopulatedOrder) => {
         Total: $${order.total}
       </p>
 
+      <div class="mt-6 flex justify-end">
+        <button
+          id="saveOrderStatus"
+          class="rounded-lg bg-orange-500 px-5 py-2 font-medium text-white hover:bg-orange-600"
+        >
+          Guardar cambios
+        </button>
+      </div>
+
     </div>
   `;
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
+
+  const statusSelect = document.getElementById(
+    "orderStatus",
+  ) as HTMLSelectElement;
+
+  const saveButton = document.getElementById(
+    "saveOrderStatus",
+  ) as HTMLButtonElement;
+
+  saveButton.addEventListener("click", () => {
+    order.estado = statusSelect.value as Order["estado"];
+
+    modal.classList.remove("flex");
+    modal.classList.add("hidden");
+
+    renderOrders();
+  });
 };
 
 const renderOrders = () => {
