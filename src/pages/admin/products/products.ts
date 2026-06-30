@@ -8,11 +8,26 @@ mountAdminSidebar({
   position: "append",
 });
 
+let products: Product[] = [];
+let categories: Category[] = [];
+
+const newProductButton = document.getElementById(
+  "newProductButton",
+) as HTMLButtonElement;
+
+const productModal = document.getElementById("productModal") as HTMLElement;
+
+const closeModal = document.getElementById("closeModal") as HTMLButtonElement;
+
+const productForm = document.getElementById("productForm") as HTMLFormElement;
+
 const tableBody = document.getElementById(
   "productsTableBody",
 ) as HTMLTableSectionElement;
 
-const renderProducts = (products: Product[], categories: Category[]) => {
+const categorySelect = document.getElementById("category") as HTMLSelectElement;
+
+const renderProducts = () => {
   tableBody.innerHTML = products
     .map((product) => {
       const category = categories.find((c) => c.id === product.categoriaId);
@@ -68,13 +83,72 @@ const renderProducts = (products: Product[], categories: Category[]) => {
     .join("");
 };
 
-const init = async () => {
-  const [products, categories] = await Promise.all([
-    getProducts(),
-    getCategories(),
-  ]);
+const fillCategories = () => {
+  categorySelect.innerHTML = categories
+    .map(
+      (category) => `
+        <option value="${category.id}">
+          ${category.nombre}
+        </option>
+      `,
+    )
+    .join("");
+};
 
-  renderProducts(products, categories);
+const closeProductModal = () => {
+  productModal.classList.add("hidden");
+  productModal.classList.remove("flex");
+};
+
+newProductButton.addEventListener("click", () => {
+  productModal.classList.remove("hidden");
+  productModal.classList.add("flex");
+});
+
+closeModal.addEventListener("click", closeProductModal);
+
+productModal.addEventListener("click", (event) => {
+  if (event.target === productModal) {
+    closeProductModal();
+  }
+});
+
+productForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  const newProduct: Product = {
+    id: Math.max(...products.map((p) => p.id)) + 1,
+    nombre: (document.getElementById("name") as HTMLInputElement).value,
+    descripcion: (document.getElementById("description") as HTMLTextAreaElement)
+      .value,
+    imagen: (document.getElementById("image") as HTMLInputElement).value,
+    precio: Number(
+      (document.getElementById("price") as HTMLInputElement).value,
+    ),
+    categoriaId: Number(categorySelect.value),
+    stock: Number((document.getElementById("stock") as HTMLInputElement).value),
+    disponible: (document.getElementById("available") as HTMLInputElement)
+      .checked,
+    eliminado: false,
+  };
+
+  products.unshift(newProduct);
+
+  renderProducts();
+
+  productForm.reset();
+
+  (document.getElementById("available") as HTMLInputElement).checked = true;
+
+  closeProductModal();
+});
+
+const init = async () => {
+  [products, categories] = await Promise.all([getProducts(), getCategories()]);
+
+  fillCategories();
+
+  renderProducts();
 };
 
 init();

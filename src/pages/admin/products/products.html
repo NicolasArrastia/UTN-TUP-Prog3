@@ -19,12 +19,23 @@
       <div id="sidebar"></div>
 
       <section class="flex-1 p-8">
-        <h2 class="mb-8 text-3xl font-bold">
-          Gestión de Productos
-        </h2>
+        <div class="flex justify-between">
+          <h2 class="mb-8 text-3xl font-bold">
+            Gestión de Productos
+          </h2>
+          <div class="mb-6 flex justify-end">
+            <button
+              id="newProductButton"
+              class="rounded-lg bg-orange-500 px-5 py-2 font-medium text-white hover:bg-orange-600"
+            >
+              Nuevo producto
+            </button>
+          </div>
+        </div>
 
         <div class="overflow-hidden rounded-xl bg-white shadow">
           <div class="overflow-x-auto">
+
             <table class="min-w-full">
               <thead class="bg-gray-100">
                 <tr>
@@ -48,6 +59,101 @@
         </div>
       </section>
     </main>
+
+
+    <!-- MODAL -->
+    <div  
+      id="productModal"
+      class="fixed inset-0 z-50 hidden items-center justify-center bg-black/50 p-6"
+    >
+      <div class="w-full max-w-xl rounded-xl bg-white p-6">
+
+        <div class="mb-6 flex items-center justify-between">
+          <h3 class="text-2xl font-bold">
+            Nuevo producto
+          </h3>
+
+          <button
+            id="closeModal"
+            class="rounded border px-3 py-1"
+          >
+            ✕
+          </button>
+        </div>
+
+        <form
+          id="productForm"
+          class="space-y-4"
+        >
+
+          <input
+            id="name"
+            value="Hamburguesa Triple Bacon"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Nombre"
+            required
+          />
+
+          <textarea
+            id="description"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Descripción"
+            required
+          >Hamburguesa con triple carne, cheddar, panceta crocante y salsa especial.</textarea>
+
+          <input
+            id="image"
+            value="https://images.unsplash.com/photo-1568901346375-23c9450c58cd"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="URL de la imagen"
+            required
+          />
+
+          <input
+            id="price"
+            type="number"
+            value="6500"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Precio"
+            required
+          />
+
+          <input
+            id="stock"
+            type="number"
+            value="25"
+            class="w-full rounded border border-neutral-400 p-2"
+            placeholder="Stock"
+            required
+          />
+
+          <select
+            id="category"
+            class="w-full rounded border border-neutral-400 p-2"
+            required
+          ></select>
+
+          <label class="flex items-center gap-2">
+            <input
+              id="available"
+              type="checkbox"
+              checked
+            />
+
+            Disponible
+          </label>
+
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-orange-500 py-3 text-white transition hover:bg-orange-600"
+          >
+            Crear producto
+          </button>
+
+        </form>
+
+      </div>
+    </div>
 
     <script
       type="module"
