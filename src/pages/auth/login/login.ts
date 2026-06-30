@@ -6,10 +6,13 @@ const form = document.querySelector<HTMLFormElement>("#login-form");
 const emailInput = document.querySelector<HTMLInputElement>("#email");
 const passwordInput = document.querySelector<HTMLInputElement>("#password");
 
+const registerLink =
+  document.querySelector<HTMLButtonElement>("#register-link");
+
 const errorMessage =
   document.querySelector<HTMLParagraphElement>("#error-message");
 
-if (!form || !emailInput || !passwordInput || !errorMessage) {
+if (!form || !emailInput || !passwordInput || !errorMessage || !registerLink) {
   throw new Error("Login elements not found");
 }
 
@@ -78,4 +81,8 @@ customerDemo.addEventListener("click", async () => {
 
 customer2Demo.addEventListener("click", async () => {
   await login("cliente2@food.com", "cliente123", errorMessage);
+});
+
+registerLink.addEventListener("click", () => {
+  navigate(ROUTES.REGISTER);
 });

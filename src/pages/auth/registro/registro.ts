@@ -1,37 +1,86 @@
-import "../../../global.css";
-import "../auth.css";
-import type { IUser } from "../../../types/user";
+import { getUsers } from "../../../utils/api";
+import { saveSession } from "../../../utils/auth";
+import { navigate, ROUTES } from "../../../utils/navigate";
+import type { User } from "../../../types/user";
 
-const form = document.getElementById("form") as HTMLFormElement;
-const inputEmail = document.getElementById("email") as HTMLInputElement;
-const inputPassword = document.getElementById("password") as HTMLInputElement;
+const form = document.querySelector<HTMLFormElement>("#register-form");
+const nameInput = document.querySelector<HTMLInputElement>("#name");
+const emailInput = document.querySelector<HTMLInputElement>("#email");
+const passwordInput = document.querySelector<HTMLInputElement>("#password");
+const errorMessage =
+  document.querySelector<HTMLParagraphElement>("#error-message");
+const lastnameInput = document.querySelector<HTMLInputElement>("#lastname");
+const phoneInput = document.querySelector<HTMLInputElement>("#phone");
 
-form.addEventListener("submit", (e: SubmitEvent) => {
-  e.preventDefault();
+if (
+  !form ||
+  !nameInput ||
+  !lastnameInput ||
+  !phoneInput ||
+  !emailInput ||
+  !passwordInput ||
+  !errorMessage
+) {
+  throw new Error("Register elements not found");
+}
 
-  const email = inputEmail.value.trim();
-  const password = inputPassword.value.trim();
+async function register(
+  name: string,
+  lastname: string,
+  phone: string,
+  email: string,
+  password: string,
+  errorMessage: HTMLParagraphElement,
+): Promise<void> {
+  errorMessage.classList.add("hidden");
 
-  if (!email || !password) return;
-
-  const users: IUser[] = JSON.parse(localStorage.getItem("users") || "[]");
-
-  // evitar duplicados
-  const exists = users.some((u) => u.email === email);
-  if (exists) {
-    alert("Usuario ya existe");
+  if (!name || !lastname || !phone || !email || !password) {
+    errorMessage.textContent = "Todos los campos son obligatorios";
+    errorMessage.classList.remove("hidden");
     return;
   }
 
-  const newUser: IUser = {
-    email,
-    password,
-    role: "client", // siempre client
-    loggedIn: false,
-  };
+  try {
+    const users = await getUsers();
 
-  users.push(newUser);
-  localStorage.setItem("users", JSON.stringify(users));
+    const exists = users.find((u) => u.mail === email);
 
-  alert("Registrado correctamente");
+    if (exists) {
+      errorMessage.textContent = "El email ya está registrado";
+      errorMessage.classList.remove("hidden");
+      return;
+    }
+
+    const newUser: User = {
+      id: Math.max(...users.map((u) => u.id)) + 1,
+      nombre: name,
+      apellido: lastname,
+      celular: phone,
+      mail: email,
+      password,
+      rol: "USUARIO",
+    };
+
+    const { password: _, ...sessionUser } = newUser;
+
+    saveSession(sessionUser);
+
+    navigate(ROUTES.HOME);
+  } catch {
+    errorMessage.textContent = "Ocurrió un error al crear la cuenta";
+    errorMessage.classList.remove("hidden");
+  }
+}
+
+form.addEventListener("submit", async (event) => {
+  event.preventDefault();
+
+  await register(
+    nameInput.value.trim(),
+    lastnameInput.value.trim(),
+    phoneInput.value.trim(),
+    emailInput.value.trim(),
+    passwordInput.value.trim(),
+    errorMessage,
+  );
 });
